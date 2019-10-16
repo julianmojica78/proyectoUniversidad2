@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid  id="grid1" columns="2">
+
+                <p:outputLabel value="Nombre del Diplomado: " />
+                <p:inputText value="#{logica.programa.nombre}" />  
+
+                <p:outputLabel value="Fecha de Inicio: " />
+                <p:calendar id="fechaInicio" value="#{logica.programa.fechaInicio}" navigator="true" mindate="#{logica.fechaMin}" pattern="dd-MM-yyyy"/>
+
+                <p:outputLabel value="Fecha de Finalizacion: " />
+                <p:calendar id="fechaFin" value="#{logica.programa.fechaFin}" navigator="true" mindate="#{logica.fechaMax}" pattern="dd-MM-yyyy"/>                        
+
+                <p:outputLabel value="Descripcion: " />
+                <p:inputTextarea id="descripcion" value="#{logica.programa.descripcion }" rows="7" cols="30" maxlength="100" counterTemplate="{0} caracteres restantes." autoResize="false"/>
+
+                <p:outputLabel value="Universidad: " />
+                <p:selectOneMenu id="nombreUniversi" value="#{logica.nombreUniversidades}" >
+                    <f:selectItem itemLabel="Seleccione Universidad" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{logica.listaUniversidad}" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="Guardar Diplomado" action="#{logica.guardarDiplomado()}"  />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
