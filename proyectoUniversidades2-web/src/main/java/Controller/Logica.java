@@ -45,7 +45,7 @@ public class Logica implements Serializable {
 
     @EJB
     EstudianteFacadeLocal estudianteFacade;
-    
+
     Usuario usuario = new Usuario();
 
     Institucion institucion = new Institucion();
@@ -96,18 +96,22 @@ public class Logica implements Serializable {
         //programa = null;
     }
 
-    public void guardaEstudiante(Usuario usuario) {
+    public void guardaEstudiante(Usuario usuario,String nombre) {
         Estudiante estudiante = new Estudiante(usuario.getNombre(), usuario.getFoto(), usuario.getEdad());
-        diplomado = diplomadoFacade.find(0);
+        diplomado = diplomadoFacade.findIdDiplomados(nombre);
         estudiante.setDiplomado(diplomado);
         estudianteFacade.create(estudiante);
         //usuario = null;
     }
-    
-    public List<Universidad> listaUniversidades(){
+
+    public List<Universidad> listaUniversidades() {
         return universidadFacade.findAll();
     }
-    
+
+    public List<Diplomado> listaDiplomados() {
+        return diplomadoFacade.findNombre();
+    }
+
     @PostConstruct
     public void traerUniversidades() {
         listaUniversidad = universidadFacade.findNombre();
@@ -247,6 +251,6 @@ public class Logica implements Serializable {
 
     public void setListaUniversidad(List<Universidad> listaUniversidad) {
         this.listaUniversidad = listaUniversidad;
-    }   
-    
+    }
+
 }

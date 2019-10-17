@@ -23,11 +23,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-/*@NamedQueries({
-    @NamedQuery(name = "traerEstudiantes", query = "SELECT est.nombre FROM Estudiante est WHERE est.diplomado.id = 0"),
-    @NamedQuery(name = "traerIdEst", query = "SELECT est FROM Estudiante est WHERE est.nombre = :nombre"),
-    @NamedQuery(name = "desasociarEst", query = "SELECT est.nombre FROM Estudiante est WHERE est.diplomado.id = :id")
-})*/
 public class Estudiante implements Serializable {
 
     @Id

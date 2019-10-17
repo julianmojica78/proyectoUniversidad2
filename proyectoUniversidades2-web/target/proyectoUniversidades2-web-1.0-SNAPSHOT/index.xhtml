@@ -71,11 +71,18 @@
 
                         <p:outputLabel value="Edad del Estudiante: " />
                         <p:inputText value="#{logica.usuario.edad}" /> 
-
-                        <p:commandButton value="Guardar Estudiante" action="#{logica.guardaEstudiante(logica.usuario)}"  />
+                        
+                        <p:outputLabel value="Diplomado: " />
+                        <p:selectOneMenu id="nombreDiploma" value="#{logica.nombreDiplomado}" >
+                            <f:selectItem itemLabel="Seleccione Diplomado" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{logica.listaDiplomados()}" />
+                        </p:selectOneMenu>
+                        
+                        <p:commandButton value="Guardar Estudiante" action="#{logica.guardaEstudiante(logica.usuario,logica.nombreDiplomado)}"  />
                     </h:panelGrid>
                 </p:tab>
             </p:accordionPanel>
+            <br></br>
             <p:dataTable id="tbl" var="lista" value="#{logica.listaUniversidades()}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                          paginator="true" rows="10" style="margin-bottom:20px">

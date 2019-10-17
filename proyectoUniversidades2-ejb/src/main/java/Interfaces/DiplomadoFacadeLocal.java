@@ -30,4 +30,8 @@ public interface DiplomadoFacadeLocal {
 
     int count();
     
+    List<Diplomado> findNombre();
+    
+    Diplomado findIdDiplomados(String nombre);
+    
 }

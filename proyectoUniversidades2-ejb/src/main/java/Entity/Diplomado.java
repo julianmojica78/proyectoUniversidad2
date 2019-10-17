@@ -6,7 +6,6 @@
 package Entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -30,11 +29,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table
-/*@NamedQueries({
-    @NamedQuery(name = "traerDiplomados", query = "SELECT dip.nombre FROM Diplomado dip WHERE dip.id != 0 AND dip.universidad.id = 0"),
-    @NamedQuery(name = "traerId", query = "SELECT dip FROM Diplomado dip WHERE dip.nombre = :nombre"),
-    @NamedQuery(name = "desasociar", query = "SELECT dip.nombre FROM Diplomado dip WHERE dip.universidad.id = :id")
-})*/
+@NamedQueries({
+   @NamedQuery(name = "traerDiplomados", query = "SELECT dip.nombre FROM Diplomado dip"),
+   @NamedQuery(name = "traerIdDiplomados", query = "SELECT dip.id FROM Diplomado dip  WHERE dip.nombre = :nombre")
+})
 public class Diplomado implements Serializable {
 
     @Id
