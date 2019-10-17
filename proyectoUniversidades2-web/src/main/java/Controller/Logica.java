@@ -68,8 +68,6 @@ public class Logica implements Serializable {
 
     String nombreEstudiante;
 
-    List<Universidad> listaUniversidad;
-
     private UploadedFile file;
 
     public Logica() {
@@ -77,22 +75,22 @@ public class Logica implements Serializable {
 
     public void guardarUniversidad(Institucion instituto) {
 
-        if (instituto.getEscudo() != null) {
-            instituto.setEscudo(file.getFileName());
+        //if (instituto.getEscudo() != null) {
+        //instituto.setEscudo(file.getFileName());
             Universidad universidad = new Universidad(instituto.getNombre(), instituto.getExtension(), instituto.getEscudo(), instituto.getFundacion());
             universidadFacade.create(universidad);
             //institucion = null;
-        } else {
+        /*} else {
             FacesMessage message = new FacesMessage("Seleccione una imagen");
             FacesContext.getCurrentInstance().addMessage(null, message);
-        }
+        }*/
     }
 
-    public void guardarDiplomado() {
-        Diplomado diplomado = new Diplomado(programa.getNombre(), programa.getFechaInicio(), programa.getFechaFin(), programa.getDescripcion());
-        universidad = universidadFacade.findIdUniversidad(programa.getUniversidad().getNombre());
-        diplomado.setUniversidad(universidad);
-        diplomadoFacade.create(diplomado);
+    public void guardarDiplomado(Programa programa,String nombre) {
+        Diplomado diplomados = new Diplomado(programa.getNombre(), programa.getFechaInicio(), programa.getFechaFin(), programa.getDescripcion());
+        universidad = universidadFacade.findIdUniversidad(nombre);
+        diplomados.setUniversidad(universidad);
+        diplomadoFacade.create(diplomados);
         //programa = null;
     }
 
@@ -112,9 +110,8 @@ public class Logica implements Serializable {
         return diplomadoFacade.findNombre();
     }
 
-    @PostConstruct
-    public void traerUniversidades() {
-        listaUniversidad = universidadFacade.findNombre();
+    public List<Universidad> traerUniversidades() {
+        return universidadFacade.findNombre();
     }
 
     public Date fechaFin() {
@@ -244,13 +241,4 @@ public class Logica implements Serializable {
     public void setNombreEstudiante(String nombreEstudiante) {
         this.nombreEstudiante = nombreEstudiante;
     }
-
-    public List<Universidad> getListaUniversidad() {
-        return listaUniversidad;
-    }
-
-    public void setListaUniversidad(List<Universidad> listaUniversidad) {
-        this.listaUniversidad = listaUniversidad;
-    }
-
 }

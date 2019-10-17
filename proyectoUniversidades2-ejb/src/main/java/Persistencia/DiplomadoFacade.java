@@ -40,7 +40,7 @@ public class DiplomadoFacade extends AbstractFacade<Diplomado> implements Diplom
 
     @Override
     public Diplomado findIdDiplomados(String nombre) {
-               TypedQuery<Diplomado> consulta = em.createNamedQuery("traerIdDiplomados", Diplomado.class);
+        TypedQuery<Diplomado> consulta = em.createNamedQuery("traerIdDiplomados", Diplomado.class);
         consulta.setParameter("nombre", nombre);
         return consulta.getSingleResult();
     }

@@ -31,7 +31,7 @@ import javax.persistence.TemporalType;
 @Table
 @NamedQueries({
    @NamedQuery(name = "traerDiplomados", query = "SELECT dip.nombre FROM Diplomado dip"),
-   @NamedQuery(name = "traerIdDiplomados", query = "SELECT dip.id FROM Diplomado dip  WHERE dip.nombre = :nombre")
+   @NamedQuery(name = "traerIdDiplomados", query = "SELECT dip FROM Diplomado dip  WHERE dip.nombre = :nombre")
 })
 public class Diplomado implements Serializable {
 

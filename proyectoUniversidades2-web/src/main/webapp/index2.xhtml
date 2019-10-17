@@ -15,28 +15,24 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid  id="grid1" columns="2">
+            <h:panelGrid  id="gridUniversidad" columns="2">
+                        <p:outputLabel value="Nombre de la universidad: " />
+                        <p:inputText value="#{logica.institucion.nombre}" />
 
-                <p:outputLabel value="Nombre del Diplomado: " />
-                <p:inputText value="#{logica.programa.nombre}" />  
+                        <p:outputLabel value="Escudo de la universidad: " />
+                        <p:fileUpload value="#{logica.institucion.escudo}"
+                                      mode="simple"
+                                      style="width: 100%"
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-                <p:outputLabel value="Fecha de Inicio: " />
-                <p:calendar id="fechaInicio" value="#{logica.programa.fechaInicio}" navigator="true" mindate="#{logica.fechaMin}" pattern="dd-MM-yyyy"/>
+                        <p:outputLabel value="Extension a la que pertenece la universidad: " />
+                        <p:inputText value="#{logica.institucion.extension}" />
 
-                <p:outputLabel value="Fecha de Finalizacion: " />
-                <p:calendar id="fechaFin" value="#{logica.programa.fechaFin}" navigator="true" mindate="#{logica.fechaMax}" pattern="dd-MM-yyyy"/>                        
+                        <p:outputLabel value="Fundación de la universidad: " />
+                        <p:calendar id="fechaFundacion" value="#{logica.institucion.fundacion}" navigator="true" pattern="dd-MM-yyyy" maxdate="31-12-2018"/>                
 
-                <p:outputLabel value="Descripcion: " />
-                <p:inputTextarea id="descripcion" value="#{logica.programa.descripcion }" rows="7" cols="30" maxlength="100" counterTemplate="{0} caracteres restantes." autoResize="false"/>
-
-                <p:outputLabel value="Universidad: " />
-                <p:selectOneMenu id="nombreUniversi" value="#{logica.nombreUniversidades}" >
-                    <f:selectItem itemLabel="Seleccione Universidad" itemValue="" noSelectionOption="true" />
-                    <f:selectItems value="#{logica.listaUniversidad}" />
-                </p:selectOneMenu>
-
-                <p:commandButton value="Guardar Diplomado" action="#{logica.guardarDiplomado()}"  />
-            </h:panelGrid>
+                        <p:commandButton value="Guardar Universidad"  action="#{logica.guardarUniversidad(logica.institucion)}"/>
+                    </h:panelGrid>
         </h:form>
     </h:body>
 </html>
