@@ -5,28 +5,16 @@
  */
 package Controller;
 
-import Entity.Diplomado;
-import Entity.Estudiante;
-import Entity.Universidad;
-import Interfaces.DiplomadoFacadeLocal;
-import Interfaces.EstudianteFacadeLocal;
-import Interfaces.UniversidadFacadeLocal;
-import Modelo.Institucion;
-import Modelo.Programa;
-import Modelo.Usuario;
+import Entity.*;
+import Interfaces.*;
+import Modelo.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -46,6 +34,9 @@ public class Logica implements Serializable {
     @EJB
     EstudianteFacadeLocal estudianteFacade;
 
+    @EJB
+    ReporteFacadeLocal reporteFacade;    
+    
     Usuario usuario = new Usuario();
 
     Institucion institucion = new Institucion();
@@ -57,6 +48,8 @@ public class Logica implements Serializable {
     Diplomado diplomado;
 
     Estudiante estudiante;
+    
+    Reporte reporte;
 
     Date fechaMin = new Date();
 
@@ -112,6 +105,11 @@ public class Logica implements Serializable {
 
     public List<Universidad> traerUniversidades() {
         return universidadFacade.findNombre();
+    }
+    
+    public List<Reporte> traerReporte() {
+        List<Reporte> lista = reporteFacade.findAll();
+        return lista;
     }
 
     public Date fechaFin() {
@@ -240,5 +238,23 @@ public class Logica implements Serializable {
 
     public void setNombreEstudiante(String nombreEstudiante) {
         this.nombreEstudiante = nombreEstudiante;
+        
+        
+    }
+
+    public ReporteFacadeLocal getReporteFacade() {
+        return reporteFacade;
+    }
+
+    public void setReporteFacade(ReporteFacadeLocal reporteFacade) {
+        this.reporteFacade = reporteFacade;
+    }
+
+    public Reporte getReporte() {
+        return reporte;
+    }
+
+    public void setReporte(Reporte reporte) {
+        this.reporte = reporte;
     }
 }
