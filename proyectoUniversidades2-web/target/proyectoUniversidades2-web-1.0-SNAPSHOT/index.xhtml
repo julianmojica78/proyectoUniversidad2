@@ -14,7 +14,11 @@
                 <p:tab title="Universidad">
                     <h:panelGrid  id="gridUniversidad" columns="2">
                         <p:outputLabel value="Nombre de la universidad: " />
-                        <p:inputText id="tb_institucion" value="#{logica.institucion.nombre}" />
+                        <p:inputText id="tb_institucion" value="#{logica.institucion.nombre}" required="true" >
+                            <f:validateLength minimum="4" maximum="20" />
+                            <f:validateRegex pattern="^[a-zA-Z ]+$" />
+                        </p:inputText>
+
 
                         <p:outputLabel value="Escudo de la universidad: " />
                         <p:fileUpload value="#{logica.institucion.escudo}"
@@ -23,10 +27,13 @@
                                       allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                         <p:outputLabel value="Extension a la que pertenece la universidad: " />
-                        <p:inputText id="tb_extension" value="#{logica.institucion.extension}" />
+                        <p:inputText id="tb_extension" value="#{logica.institucion.extension}" >
+                            <f:validateLength minimum="4" maximum="20" />
+                            <f:validateRegex pattern="^[a-zA-Z ]+$" />
+                        </p:inputText>
 
                         <p:outputLabel value="Fundación de la universidad: " />
-                        <p:calendar id="fechaFundacion" value="#{logica.institucion.fundacion}" navigator="true" pattern="dd-MM-yyyy" maxdate="31-12-2018"/>                
+                        <p:calendar id="fechaFundacion" value="#{logica.institucion.fundacion}" navigator="true" pattern="dd-MM-yyyy" maxdate="31-12-2018" required="true"/>                
 
                         <p:commandButton value="Guardar Universidad"  action="#{logica.guardarUniversidad(logica.institucion)}"/>
                     </h:panelGrid>
@@ -35,16 +42,19 @@
                     <h:panelGrid id="gridDiplomado" columns="2">
 
                         <p:outputLabel value="Nombre del Diplomado: " />
-                        <p:inputText id="tb_nombreDiplomado" value="#{logica.programa.nombre}" />  
+                        <p:inputText id="tb_nombreDiplomado" value="#{logica.programa.nombre}" required="true" >
+                            <f:validateLength minimum="4" maximum="20" />
+                            <f:validateRegex pattern="^[a-zA-Z ]+$" />
+                        </p:inputText>  
 
                         <p:outputLabel value="Fecha de Inicio: " />
-                        <p:calendar id="fechaInicio" value="#{logica.programa.fechaInicio}" navigator="true" pattern="dd-MM-yyyy"/>
+                        <p:calendar id="fechaInicio" value="#{logica.programa.fechaInicio}" navigator="true" pattern="dd-MM-yyyy" required="true"/>
 
                         <p:outputLabel value="Fecha de Finalizacion: " />
-                        <p:calendar id="fechaFin" value="#{logica.programa.fechaFin}" navigator="true" pattern="dd-MM-yyyy"/>                        
+                        <p:calendar id="fechaFin" value="#{logica.programa.fechaFin}" navigator="true" pattern="dd-MM-yyyy" required="true"/>                        
 
                         <p:outputLabel value="Descripcion: " />
-                        <p:inputTextarea id="tb_descripcion" value="#{logica.programa.descripcion }" rows="7" cols="30" maxlength="100" counterTemplate="{0} caracteres restantes." autoResize="false"/>
+                        <p:inputTextarea id="tb_descripcion" value="#{logica.programa.descripcion }" rows="7" cols="30" maxlength="100" counterTemplate="{0} caracteres restantes." autoResize="false" required="true"/>
 
                         <p:outputLabel value="Universidad: " />
                         <p:selectOneMenu id="nombreUniversdal" value="#{logica.nombreUniversidades}" >
@@ -58,7 +68,10 @@
                 <p:tab title="Alumno">
                     <h:panelGrid  id="gridAlumno" columns="2">
                         <p:outputLabel value="Nombre del Estudiante: " />
-                        <p:inputText id="tb_nombreUsuario" value="#{logica.usuario.nombre}" />
+                        <p:inputText id="tb_nombreUsuario" value="#{logica.usuario.nombre}" required="true">
+                            <f:validateLength minimum="4" maximum="20" />
+                            <f:validateRegex pattern="^[a-zA-Z ]+$" />
+                        </p:inputText>
 
                         <p:outputLabel value="Foto del Estudiante: " />
                         <p:fileUpload value="#{logica.usuario.foto}"
@@ -68,7 +81,7 @@
                                       allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />                            
 
                         <p:outputLabel value="Edad del Estudiante: " />
-                        <p:inputText id="tb_edad" value="#{logica.usuario.edad}" /> 
+                        <p:inputText id="tb_edad" value="#{logica.usuario.edad}" required="true"/> 
 
                         <p:outputLabel value="Diplomado: " />
                         <p:selectOneMenu id="nombreDiploma" value="#{logica.nombreDiplomado}" >
